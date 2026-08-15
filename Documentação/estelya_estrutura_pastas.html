@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estelya — Estrutura de Pastas</title>
+<style>
+:root{
+  --bg:#fffaf8;
+  --paper:#ffffff;
+  --rose:#d88fa3;
+  --rose-strong:#c8728c;
+  --rose-soft:#f8e8ed;
+  --lilac:#b9a7d8;
+  --lilac-soft:#f1ecf8;
+  --sage:#9bb8a7;
+  --sage-soft:#edf5f0;
+  --gold:#c8a56a;
+  --gold-soft:#fbf4e8;
+  --ink:#4b3f46;
+  --muted:#8e7e86;
+  --line:#eadde2;
+  --shadow:0 18px 45px rgba(108,72,88,.10);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 8%, rgba(216,143,163,.10), transparent 24%),
+    radial-gradient(circle at 90% 10%, rgba(185,167,216,.10), transparent 26%),
+    linear-gradient(180deg,#fffaf8 0%,#fff 100%);
+}
+.wrapper{width:min(1360px,95vw);margin:34px auto 60px}
+.header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:20px;margin-bottom:26px
+}
+.brand small{
+  display:block;color:var(--rose);font-size:.82rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase
+}
+h1{
+  margin:8px 0 6px;
+  font-size:clamp(2rem,4vw,3.8rem);
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:600;letter-spacing:-.035em
+}
+.subtitle{max-width:840px;color:var(--muted);line-height:1.6}
+.badge{
+  background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:10px 16px;color:#6f5b65;font-size:.84rem;
+  box-shadow:var(--shadow);white-space:nowrap
+}
+.layout{
+  display:grid;
+  grid-template-columns:1.45fr .55fr;
+  gap:20px;
+}
+.panel{
+  background:rgba(255,255,255,.94);
+  border:1px solid #f0e5e9;
+  border-radius:28px;
+  box-shadow:0 30px 80px rgba(104,74,90,.10);
+  overflow:hidden
+}
+.panel-head{
+  padding:20px 22px;
+  border-bottom:1px solid #f1e7eb;
+  display:flex;justify-content:space-between;align-items:center
+}
+.panel-head h2{margin:0;font-size:1rem}
+.panel-head span{font-size:.76rem;color:var(--muted)}
+.tree{
+  padding:22px;
+  font-family:"Cascadia Code","Fira Code",Consolas,monospace;
+  font-size:.83rem;
+  line-height:1.65;
+  overflow:auto;
+  max-height:980px;
+}
+.row{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:2px 7px;border-radius:9px;
+}
+.row:hover{background:#fff7fa}
+.indent-1{padding-left:24px}
+.indent-2{padding-left:48px}
+.indent-3{padding-left:72px}
+.indent-4{padding-left:96px}
+.indent-5{padding-left:120px}
+.folder,.file{
+  display:inline-grid;place-items:center;
+  width:20px;height:20px;border-radius:6px;flex:0 0 auto;
+  margin-top:2px;font-size:.72rem
+}
+.folder{background:var(--rose-soft);color:var(--rose-strong)}
+.file{background:var(--lilac-soft);color:#8c78b7}
+.comment{color:#aa98a1;margin-left:7px;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:.72rem}
+.root{
+  font-weight:800;color:#8d5f70;
+  background:linear-gradient(90deg,var(--rose-soft),transparent)
+}
+.section{
+  margin:14px 0 6px;
+  color:#967b87;
+  font-weight:800;
+}
+.side{
+  padding:20px;
+  display:flex;flex-direction:column;gap:14px
+}
+.card{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:17px;
+  background:#fff;
+  box-shadow:0 10px 26px rgba(109,78,93,.05)
+}
+.card h3{margin:0 0 7px;font-size:.95rem}
+.card p{margin:0;color:var(--muted);font-size:.78rem;line-height:1.5}
+.icon{
+  width:38px;height:38px;border-radius:12px;
+  display:grid;place-items:center;margin-bottom:10px
+}
+.rose{background:var(--rose-soft);color:var(--rose-strong)}
+.lilac{background:var(--lilac-soft);color:#8c78b7}
+.sage{background:var(--sage-soft);color:#6f927c}
+.gold{background:var(--gold-soft);color:#b68c4f}
+.rules{
+  margin:0;padding-left:18px;color:var(--muted);
+  font-size:.78rem;line-height:1.65
+}
+.footer{
+  margin-top:18px;
+  display:flex;gap:8px;flex-wrap:wrap
+}
+.chip{
+  padding:8px 10px;border-radius:999px;background:#fff;
+  border:1px solid var(--line);color:#7b6872;font-size:.72rem
+}
+@media(max-width:980px){
+  .layout{grid-template-columns:1fr}
+  .header{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header class="header">
+    <div class="brand">
+      <small>Estelya · Engenharia de Software</small>
+      <h1>Estrutura de Pastas</h1>
+      <div class="subtitle">
+        Organização profissional do projeto Estelya, separando domínio, frontend, PDV,
+        automações n8n, integrações, infraestrutura, documentação e scripts.
+      </div>
+    </div>
+    <div class="badge">Monólito modular • SaaS • Multi-tenant</div>
+  </header>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Árvore oficial do projeto</h2>
+        <span>estelya/</span>
+      </div>
+
+      <div class="tree">
+        <div class="row root"><span class="folder">▣</span>estelya/</div>
+
+        <div class="row indent-1"><span class="folder">▣</span>backend/<span class="comment">Spring Boot · regras de negócio · API</span></div>
+        <div class="row indent-2"><span class="folder">▣</span>src/</div>
+        <div class="row indent-3"><span class="folder">▣</span>main/</div>
+        <div class="row indent-4"><span class="folder">▣</span>java/com/estelya/</div>
+
+        <div class="row indent-5"><span class="folder">▣</span>identity/<span class="comment">autenticação, usuários, RBAC</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>tenant/<span class="comment">clínicas, unidades e isolamento multi-tenant</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>customers/<span class="comment">clientes</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>professionals/<span class="comment">profissionais</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>scheduling/<span class="comment">agenda e agendamentos</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>procedures/<span class="comment">procedimentos e serviços</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>attendance/<span class="comment">atendimentos e evolução</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>packages/<span class="comment">pacotes e sessões</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>sales/<span class="comment">vendas</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>pos/<span class="comment">regras do PDV</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>payments/<span class="comment">PIX, cartão, TEF e gateways</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>cashregister/<span class="comment">abertura, sangria e fechamento de caixa</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>finance/<span class="comment">financeiro e conciliação</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>inventory/<span class="comment">produtos e estoque</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>automation/<span class="comment">eventos para n8n</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>notifications/<span class="comment">notificações</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>audit/<span class="comment">auditoria e rastreabilidade</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>integrations/<span class="comment">clientes externos, webhooks e providers</span></div>
+        <div class="row indent-5"><span class="folder">▣</span>shared/<span class="comment">componentes realmente compartilhados</span></div>
+
+        <div class="row indent-4"><span class="folder">▣</span>resources/</div>
+        <div class="row indent-5"><span class="folder">▣</span>db/migration/<span class="comment">Flyway</span></div>
+        <div class="row indent-5"><span class="file">◆</span>application.yml</div>
+        <div class="row indent-5"><span class="file">◆</span>application-dev.yml</div>
+        <div class="row indent-5"><span class="file">◆</span>application-prod.yml</div>
+        <div class="row indent-3"><span class="folder">▣</span>test/<span class="comment">unitários, integração e arquitetura</span></div>
+        <div class="row indent-2"><span class="file">◆</span>pom.xml</div>
+
+        <div class="row indent-1 section"><span class="folder">▣</span>frontend/</div>
+        <div class="row indent-2"><span class="folder">▣</span>src/</div>
+        <div class="row indent-3"><span class="folder">▣</span>app/</div>
+        <div class="row indent-3"><span class="folder">▣</span>layouts/</div>
+        <div class="row indent-3"><span class="folder">▣</span>modules/</div>
+        <div class="row indent-4"><span class="folder">▣</span>dashboard/</div>
+        <div class="row indent-4"><span class="folder">▣</span>agenda/</div>
+        <div class="row indent-4"><span class="folder">▣</span>clientes/</div>
+        <div class="row indent-4"><span class="folder">▣</span>profissionais/</div>
+        <div class="row indent-4"><span class="folder">▣</span>procedimentos/</div>
+        <div class="row indent-4"><span class="folder">▣</span>atendimentos/</div>
+        <div class="row indent-4"><span class="folder">▣</span>pacotes/</div>
+        <div class="row indent-4"><span class="folder">▣</span>pdv/</div>
+        <div class="row indent-4"><span class="folder">▣</span>financeiro/</div>
+        <div class="row indent-4"><span class="folder">▣</span>estoque/</div>
+        <div class="row indent-4"><span class="folder">▣</span>automacoes/</div>
+        <div class="row indent-4"><span class="folder">▣</span>relatorios/</div>
+        <div class="row indent-4"><span class="folder">▣</span>configuracoes/</div>
+        <div class="row indent-3"><span class="folder">▣</span>components/</div>
+        <div class="row indent-3"><span class="folder">▣</span>services/</div>
+        <div class="row indent-3"><span class="folder">▣</span>hooks/</div>
+        <div class="row indent-3"><span class="folder">▣</span>auth/</div>
+        <div class="row indent-3"><span class="folder">▣</span>styles/</div>
+
+        <div class="row indent-1 section"><span class="folder">▣</span>pdv-agent/<span class="comment">componente local</span></div>
+        <div class="row indent-2"><span class="folder">▣</span>src/main/java/com/estelya/pdvagent/</div>
+        <div class="row indent-3"><span class="folder">▣</span>offline/<span class="comment">SQLite e sincronização</span></div>
+        <div class="row indent-3"><span class="folder">▣</span>printer/<span class="comment">impressão local</span></div>
+        <div class="row indent-3"><span class="folder">▣</span>tef/<span class="comment">integração TEF / PinPad</span></div>
+        <div class="row indent-3"><span class="folder">▣</span>sync/<span class="comment">sincronização online/offline</span></div>
+        <div class="row indent-2"><span class="file">◆</span>pom.xml</div>
+
+        <div class="row indent-1 section"><span class="folder">▣</span>n8n/<span class="comment">automação como componente oficial</span></div>
+        <div class="row indent-2"><span class="folder">▣</span>workflows/</div>
+        <div class="row indent-3"><span class="folder">▣</span>appointments/</div>
+        <div class="row indent-3"><span class="folder">▣</span>payments/</div>
+        <div class="row indent-3"><span class="folder">▣</span>notifications/</div>
+        <div class="row indent-3"><span class="folder">▣</span>crm/</div>
+        <div class="row indent-3"><span class="folder">▣</span>ai/</div>
+        <div class="row indent-2"><span class="folder">▣</span>templates/</div>
+        <div class="row indent-2"><span class="folder">▣</span>scripts/</div>
+        <div class="row indent-2"><span class="folder">▣</span>docker/</div>
+        <div class="row indent-2"><span class="file">◆</span>README.md</div>
+
+        <div class="row indent-1 section"><span class="folder">▣</span>integrations/</div>
+        <div class="row indent-2"><span class="folder">▣</span>whatsapp/</div>
+        <div class="row indent-2"><span class="folder">▣</span>email/</div>
+        <div class="row indent-2"><span class="folder">▣</span>payment-gateways/</div>
+        <div class="row indent-2"><span class="folder">▣</span>webhooks/</div>
+
+        <div class="row indent-1 section"><span class="folder">▣</span>infrastructure/</div>
+        <div class="row indent-2"><span class="folder">▣</span>docker/</div>
+        <div class="row indent-2"><span class="folder">▣</span>nginx/</div>
+        <div class="row indent-2"><span class="folder">▣</span>postgres/</div>
+        <div class="row indent-2"><span class="folder">▣</span>redis/</div>
+        <div class="row indent-2"><span class="folder">▣</span>object-storage/</div>
+        <div class="row indent-2"><span class="folder">▣</span>monitoring/</div>
+
+        <div class="row indent-1 section"><span class="folder">▣</span>docs/</div>
+        <div class="row indent-2"><span class="folder">▣</span>architecture/</div>
+        <div class="row indent-2"><span class="folder">▣</span>database/</div>
+        <div class="row indent-2"><span class="folder">▣</span>api/</div>
+        <div class="row indent-2"><span class="folder">▣</span>n8n/</div>
+        <div class="row indent-2"><span class="folder">▣</span>diagrams/</div>
+        <div class="row indent-2"><span class="folder">▣</span>decisions/<span class="comment">ADRs</span></div>
+
+        <div class="row indent-1 section"><span class="folder">▣</span>scripts/</div>
+        <div class="row indent-1"><span class="folder">▣</span>.github/workflows/<span class="comment">CI/CD</span></div>
+        <div class="row indent-1"><span class="file">◆</span>docker-compose.yml</div>
+        <div class="row indent-1"><span class="file">◆</span>.env.example</div>
+        <div class="row indent-1"><span class="file">◆</span>.gitignore</div>
+        <div class="row indent-1"><span class="file">◆</span>README.md</div>
+      </div>
+    </section>
+
+    <aside class="panel side">
+      <div class="card">
+        <div class="icon rose">◎</div>
+        <h3>Backend por domínio</h3>
+        <p>
+          Cada módulo representa uma capacidade do negócio. Isso evita um projeto
+          gigantesco dividido apenas em controller, service e repository.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon lilac">⌘</div>
+        <h3>n8n separado</h3>
+        <p>
+          Workflows versionados em JSON ficam fora do backend. O Spring Boot continua
+          sendo o dono das regras críticas.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon gold">▣</div>
+        <h3>PDV isolado</h3>
+        <p>
+          O PDV Web/PWA usa a API central. O agente local cuida de SQLite,
+          impressão, TEF e contingência.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon sage">▤</div>
+        <h3>Infraestrutura explícita</h3>
+        <p>
+          Docker, Nginx, PostgreSQL, Redis, object storage e monitoramento ficam
+          versionados como infraestrutura do produto.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Regras arquiteturais</h3>
+        <ul class="rules">
+          <li>Frontend nunca acessa PostgreSQL diretamente.</li>
+          <li>n8n nunca altera tabelas diretamente.</li>
+          <li>PDV usa a API do Spring Boot.</li>
+          <li>Integrações externas ficam atrás de adapters/providers.</li>
+          <li>Multi-tenancy faz parte do núcleo de segurança.</li>
+          <li>Migrations de banco são versionadas com Flyway.</li>
+          <li>Segredos não entram no Git; somente .env.example.</li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <span class="chip">Spring Boot</span>
+        <span class="chip">PWA</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">Redis</span>
+        <span class="chip">n8n</span>
+        <span class="chip">PDV Agent</span>
+        <span class="chip">Docker</span>
+        <span class="chip">CI/CD</span>
+      </div>
+    </aside>
+  </div>
+
+</div>
+</body>
+</html>

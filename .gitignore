@@ -1,0 +1,71 @@
+﻿# ==========================================
+# ESTELYA SaaS
+# Git Ignore
+# ==========================================
+
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+
+# Java / Spring Boot
+backend/target/
+pdv-agent/target/
+*.class
+*.jar
+*.war
+
+# Maven
+.mvn/timing.properties
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Docker local volumes
+docker-data/
+
+# Credentials / Certificates
+*.pem
+*.key
+*.p12
+*.pfx
+
+# n8n local data / credentials
+n8n/.n8n/
+n8n/credentials/
+
+# Backups
+*.bak
+*.backup
+*.dump
+'@ | Set-Content .gitignore -Encoding UTF8
