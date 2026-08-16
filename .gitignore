@@ -68,4 +68,13 @@ n8n/credentials/
 *.bak
 *.backup
 *.dump
-'@ | Set-Content .gitignore -Encoding UTF8
+
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+estrutura.txt
