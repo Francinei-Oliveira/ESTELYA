@@ -141,3 +141,27 @@ Implementado em 23/08/2026:
 - Actuator configurado com health e info
 - Liveness e readiness habilitados
 - Build e testes aprovados
+## Ponto de parada — 23/08/2026
+
+Backend validado e operacional.
+
+Concluído nesta sessão:
+
+- PostgreSQL e serviço Systemd
+- Tenants e usuários multiempresa
+- BCrypt
+- Login JWT
+- Perfis e isolamento de tenant
+- Testes automatizados
+- Swagger/OpenAPI
+- Actuator e health check
+- Configuração centralizada no application.yml
+
+Próxima retomada:
+
+1. Criar a migration V3 de refresh tokens
+2. Implementar rotação e revogação
+3. Criar refresh e logout
+4. Testar, documentar e versionar
+
+A migration V3 ainda não foi criada nem aplicada.
