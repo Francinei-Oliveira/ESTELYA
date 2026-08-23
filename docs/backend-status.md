@@ -130,3 +130,14 @@ Implementado em 23/08/2026:
 - Spring Boot Actuator
 - Endpoint /actuator/health
 - Health status validado como UP
+## Atualização — Configuração padronizada
+
+Implementado em 23/08/2026:
+
+- application.properties removido
+- application.yml definido como configuração única
+- Porta padrão 8085
+- Suporte à variável SERVER_PORT
+- Actuator configurado com health e info
+- Liveness e readiness habilitados
+- Build e testes aprovados
