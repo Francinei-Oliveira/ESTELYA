@@ -6,6 +6,7 @@ import com.estelya.user.domain.User;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,9 @@ public class UserController {
     }
 
     @PostMapping
+    @PreAuthorize(
+            "@tenantSecurity.belongsToTenant(authentication, #tenantId)" +
+            " and hasAnyRole('OWNER', 'ADMIN')")
     public ResponseEntity<UserResponse> create(
             @PathVariable UUID tenantId,
             @Valid @RequestBody CreateUserRequest request) {
@@ -49,6 +53,9 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
+    @PreAuthorize(
+            "@tenantSecurity.belongsToTenant(authentication, #tenantId)" +
+            " and hasAnyRole('OWNER', 'ADMIN')")
     public ResponseEntity<UserResponse> findById(
             @PathVariable UUID tenantId,
             @PathVariable UUID userId) {
