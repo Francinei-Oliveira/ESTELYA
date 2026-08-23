@@ -117,3 +117,16 @@ As variáveis DB_PASSWORD e JWT_SECRET ficam no arquivo protegido /etc/estelya.e
 18. Relatórios
 19. Auditoria e LGPD
 20. Frontend Web/PWA
+## Atualização — Swagger e monitoramento
+
+Implementado em 23/08/2026:
+
+- Swagger UI
+- OpenAPI 3.1
+- Esquema de autenticação Bearer JWT
+- Botão Authorize
+- Endpoint /v3/api-docs
+- Endpoint /swagger-ui.html
+- Spring Boot Actuator
+- Endpoint /actuator/health
+- Health status validado como UP
